@@ -1,10 +1,16 @@
 import './globals.css'
 import { DEFAULT_SEO } from './seo'
+import { ReactNode } from "react";
 
 export const metadata = {
   ...DEFAULT_SEO,
   manifest: '/manifest.json',
 }
+
+type RootLayoutProps = {
+  children: ReactNode;
+};
+
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -19,7 +25,7 @@ const jsonLd = {
   author: { '@type': 'Organization', name: 'OffClock', url: 'https://offclock.in' },
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: RootLayoutProps)  {
   return (
     <html lang="en-IN">
       <head>
