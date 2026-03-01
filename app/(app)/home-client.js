@@ -3,9 +3,14 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 import { MOODS } from '@/lib/constants'
+import { saveMood } from '@/lib/db'
 
 export default function HomeClient() {
   const [mood, setMood] = useState(null)
+  const handleMood = async (emoji) => {
+    setMood(emoji)
+    await saveMood(emoji)  
+  }
   const router = useRouter()
 
   const actions = [
@@ -24,7 +29,7 @@ export default function HomeClient() {
           <p style={{ color: '#8A8A8A', fontSize: 13, marginBottom: 14 }}>No judgment. Sach batao.</p>
           <div style={{ display: 'flex', gap: 8 }}>
             {MOODS.map(m => (
-              <button key={m.emoji} onClick={() => setMood(m.emoji)} style={{
+              <button key={m.emoji} onClick={() => handleMood(m.emoji)} style={{
                 flex: 1, padding: '12px 4px', borderRadius: 14,
                 border: mood === m.emoji ? '2px solid #E07B54' : '2px solid #EDE8E3',
                 background: mood === m.emoji ? '#FDF0EA' : '#F9F6F2',

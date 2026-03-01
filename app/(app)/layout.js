@@ -1,6 +1,8 @@
 import BottomNav from '@/components/BottomNav'
+import { supabase } from '@/lib/supabase'
 
 export default function AppLayout({ children }) {
+    
   return (
     <div style={{
       maxWidth: 430,
